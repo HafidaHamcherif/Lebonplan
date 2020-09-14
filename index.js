@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
     // res.send('Welcome to teh bon plan!');
         
 });
-app.get('/users',(req, res) => {
+app.post('/users',(req, res) => {
     res.send('users')
 });
 app.get('/products',(req, res) => {
