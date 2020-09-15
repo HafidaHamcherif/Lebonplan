@@ -2,19 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-	res.render('home');
+	res.render('mystore/home');
 });
 
 router.get('/products', (req, res) => {
-	res.render('store-products');
+	res.render('mystore/products');
 });
 
 router.get('/products/cities/:city', (req, res) => {
-	res.render('city');
+	res.render('mystore/city');
 });
 
 router.get('/products/:productId', (req, res) => {
-	res.render('product-details');
+	res.render('mystore/product-details');
 });
 
 module.exports = router;

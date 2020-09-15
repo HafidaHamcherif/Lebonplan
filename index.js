@@ -1,176 +1,137 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-<<<<<<< HEAD
-const expressSession = require("express-session");
-const MongoStore = require("connect-mongo")(expressSession);
+// const multer = require('multer');
+const expressSession = require('express-session');
+const MongoStore = require('connect-mongo')(expressSession);
 const mongoose = require('mongoose');
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
-
-const User = require("./models").User;
-
-// gestion de date
-const { formatDate, getTimeBetweenDates } = require('./utils/date')
-
-const port = process.env.PORT || 3000;
-const app = express();
-
-
-
-mongoose.connect('mongodb://localhost:27017/bon_plan', {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-}, (err) => {
-    if (err !== null) {
-        console.log('error in this')
-        console.log(err);
-    } else {
-        console.log('Connected to the database');
-    }
-});
-=======
+const LocalStrategy = require('passport-local');
+const passport = require('passport');
 const userRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
 const storeRoutes = require('./routes/store');
+const User = require('./models/user');
 
-// Port
-const port = process.env.PORT || 3000;
-const app = express();
-
-// Config of handlebars
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
-
-// parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
-// parse application/json
-app.use(express.json());
-
-// Routes
-app.use(storeRoutes);
-app.use('/admin', adminRoutes);
-app.use(userRoutes);
->>>>>>> 38877e6546820c5bdf06e07e608ff258c94f809d
-
-
-const multer  = require('multer');
-const upload = multer({ 
-    dest: 'public/uploads/'
-});
-
-app.use(express.static('public'))
+// gestion de date
+const { formatDate, getTimeBetweenDates } = require('./utils/date');
 
 // Express configuration
-
-app.engine("handlebars", exphbs());
-app.set("view engine", "handlebars");
+const app = express();
+const port = process.env.PORT || 3000;
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('public'));
+
+// const upload = multer({
+// 	dest: 'public/uploads/',
+// });
 
 // enable session management
 app.use(
-    expressSession({
-      secret: "samurai",
-      resave: false,
-      saveUninitialized: false,
-      store: new MongoStore({ mongooseConnection: mongoose.connection })
-    })
-  );
+	expressSession({
+		secret: 'samurai',
+		resave: false,
+		saveUninitialized: false,
+		store: new MongoStore({ mongooseConnection: mongoose.connection }),
+	})
+);
 
 // enable Passport
-  app.use(passport.initialize());
-  app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Passport configuration
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); // Save the user.id to the session
 passport.deserializeUser(User.deserializeUser()); // Receive the user.id from the session and fetch the User from the DB by its ID
- 
 
-app.get('/', (req, res) => {
-<<<<<<< HEAD
-    res.render('home'); 
-    // res.send('Welcome to teh bon plan!');
-        
-});
+// Routes
+app.use('/admin', adminRoutes);
+app.use(userRoutes);
+app.use(storeRoutes);
 
-app.get("/admin", (req, res) => {
-console.log("GET /admin");
-if (req.isAuthenticated()) {
-    console.log(req.user);
-    res.render("admin");
-} else {
-    res.redirect("/");
-}
-});
+// app.get('/', (req, res) => {
+// 	res.render('admin/add-product');
+// 	// res.send('Welcome to teh bon plan!');
+// });
 
-app.get("/signup", (req, res) => {
-console.log("GET /signup");
-if (req.isAuthenticated()) {
-    res.redirect("/admin");
-} else {
-    res.render("signup");
-}
-});
+// app.get('/admin', (req, res) => {
+// 	console.log('GET /admin');
+// 	if (req.isAuthenticated()) {
+// 		console.log(req.user);
+// 		res.render('admin');
+// 	} else {
+// 		res.redirect('/');
+// 	}
+// });
 
-app.post("/signup",upload.single('image'), (req, res) => {
-console.log("POST /signup");
-console.log('POST / signup req.file', req.file);
-console.log('POST / signup req.file', req.body);
-console.log('form parameter', req.body.username); 
-console.log("will signup");
+// app.get('/signup', (req, res) => {
+// 	console.log('GET /signup');
+// 	if (req.isAuthenticated()) {
+// 		res.redirect('/admin');
+// 	} else {
+// 		res.render('signup');
+// 	}
+// });
 
-const username = req.body.username;
-const password = req.body.password;
-const firstname = req.body.firstname;
-const surname = req.body.surname;
-const  profilPicture  = req.file.path;
+// app.post('/signup', upload.single('image'), (req, res) => {
+// 	console.log('POST /signup');
+// 	console.log('POST / signup req.file', req.file);
+// 	console.log('POST / signup req.file', req.body);
+// 	console.log('form parameter', req.body.username);
+// 	console.log('will signup');
 
-// Register 
-User.register(
-new User({
-username: username,
-firstName: firstname,
-surname: surname,
-profilPicture,
-// other fields can be added here
-}),
-password, // password will be hashed
-(err, user) => {
-    if (err) {
-        console.log("/users/signup user register err", err);
-        return res.render("signup");
-    } else {
-        passport.authenticate("local")(req, res, () => {
-        res.redirect("/admin");
-        });
-    }
-    }
-);
-});   
+// 	const username = req.body.username;
+// 	const password = req.body.password;
+// 	const firstname = req.body.firstname;
+// 	const surname = req.body.surname;
+// 	const profilPicture = req.file.path;
 
-app.get("/login", (req, res) => {
-    if (req.isAuthenticated()) {
-        res.redirect("/admin");
-    } else {
-        res.render("login");
-    }
-});
+// 	// Register
+// 	User.register(
+// 		new User({
+// 			username: username,
+// 			firstName: firstname,
+// 			surname: surname,
+// 			profilPicture,
+// 			// other fields can be added here
+// 		}),
+// 		password, // password will be hashed
+// 		(err, user) => {
+// 			if (err) {
+// 				console.log('/users/signup user register err', err);
+// 				return res.render('signup');
+// 			} else {
+// 				passport.authenticate('local')(req, res, () => {
+// 					res.redirect('/admin');
+// 				});
+// 			}
+// 		}
+// 	);
+// });
 
-app.post(
-"/login",
-passport.authenticate("local", {
-    successRedirect: "/admin",
-    failureRedirect: "/login"
-})
-);
+// app.get('/login', (req, res) => {
+// 	if (req.isAuthenticated()) {
+// 		res.redirect('/admin');
+// 	} else {
+// 		res.render('login');
+// 	}
+// });
 
-app.get("/logout", (req, res) => {
-    console.log("GET /logout");
-    req.logout();
-    res.redirect("/");
-  });
+// app.post(
+// 	'/login',
+// 	passport.authenticate('local', {
+// 		successRedirect: '/admin',
+// 		failureRedirect: '/login',
+// 	})
+// );
 
+// app.get('/logout', (req, res) => {
+// 	console.log('GET /logout');
+// 	req.logout();
+// 	res.redirect('/');
+// });
 
 // app.post('/users',(req, res) => {
 //     res.send('users')
@@ -183,13 +144,21 @@ app.get("/logout", (req, res) => {
 //     res.send('login')
 // });
 
-
-=======
-	res.render('home');
-});
->>>>>>> 38877e6546820c5bdf06e07e608ff258c94f809d
-
 // Start server
-app.listen(port, () => {
-	console.log(`Server satrted on port: ${port}`);
-});
+
+mongoose.connect(
+	'mongodb://localhost:27017/bon_plan',
+	{
+		useUnifiedTopology: true,
+		useNewUrlParser: true,
+	},
+	err => {
+		if (err !== null) {
+			console.log('error in this', err);
+		} else {
+			app.listen(port, () => {
+				console.log(`Server satrted on port: ${port}`);
+			});
+		}
+	}
+);

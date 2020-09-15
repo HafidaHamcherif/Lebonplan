@@ -6,15 +6,11 @@ router.get('/products', (req, res) => {
 });
 
 router.get('/add-product', (req, res) => {
-	res.render('add-product');
+	res.render('admin/add-product');
 });
 
 router.post('/add-product', (req, res) => {
-	res.redirect('/products');
+	res.redirect('admin/products');
 });
-
-router.get('/edit-product/:productId');
-
-router.post('/edit-product');
 
 module.exports = router;
