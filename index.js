@@ -1,41 +1,32 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-const mongoose = require('mongoose');
+const userRoutes = require('./routes/user');
+const adminRoutes = require('./routes/admin');
+const storeRoutes = require('./routes/store');
 
-
-const port = 3000;
+// Port
+const port = process.env.PORT || 3000;
 const app = express();
 
-
+// Config of handlebars
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-mongoose.connect('mongodb://localhost:27017/user', {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-}, (err) => {
-    if (err !== null) {
-        console.log('error in this')
-        console.log(err);
-    } else {
-        console.log('Connected to the database');
-    }
-});
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+// parse application/json
+app.use(express.json());
+
+// Routes
+app.use(storeRoutes);
+app.use('/admin', adminRoutes);
+app.use(userRoutes);
 
 app.get('/', (req, res) => {
-    res.render('home'); 
-    // res.send('Welcome to teh bon plan!');
-        
-});
-app.post('/users',(req, res) => {
-    res.send('users')
-});
-app.get('/products',(req, res) => {
-    res.send('products')
+	res.render('home');
 });
 
-
-
+// Start server
 app.listen(port, () => {
-    console.log(`Server satrted on port: ${port}`) // to confirme that server is started on that port
+	console.log(`Server satrted on port: ${port}`);
 });
