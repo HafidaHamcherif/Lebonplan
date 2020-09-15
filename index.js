@@ -1,5 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+<<<<<<< HEAD
 const expressSession = require("express-session");
 const MongoStore = require("connect-mongo")(expressSession);
 const mongoose = require('mongoose');
@@ -27,6 +28,29 @@ mongoose.connect('mongodb://localhost:27017/bon_plan', {
         console.log('Connected to the database');
     }
 });
+=======
+const userRoutes = require('./routes/user');
+const adminRoutes = require('./routes/admin');
+const storeRoutes = require('./routes/store');
+
+// Port
+const port = process.env.PORT || 3000;
+const app = express();
+
+// Config of handlebars
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+// parse application/json
+app.use(express.json());
+
+// Routes
+app.use(storeRoutes);
+app.use('/admin', adminRoutes);
+app.use(userRoutes);
+>>>>>>> 38877e6546820c5bdf06e07e608ff258c94f809d
 
 
 const multer  = require('multer');
@@ -64,6 +88,7 @@ passport.deserializeUser(User.deserializeUser()); // Receive the user.id from th
  
 
 app.get('/', (req, res) => {
+<<<<<<< HEAD
     res.render('home'); 
     // res.send('Welcome to teh bon plan!');
         
@@ -159,7 +184,12 @@ app.get("/logout", (req, res) => {
 // });
 
 
+=======
+	res.render('home');
+});
+>>>>>>> 38877e6546820c5bdf06e07e608ff258c94f809d
 
+// Start server
 app.listen(port, () => {
-    console.log(`Server satrted on port: ${port}`) // to confirme that server is started on that port
+	console.log(`Server satrted on port: ${port}`);
 });
