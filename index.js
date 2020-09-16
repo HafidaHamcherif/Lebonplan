@@ -1,6 +1,8 @@
 const express = require('express');
+// const path = require('path');
+const multer = require('multer');
+
 const exphbs = require('express-handlebars');
-// const multer = require('multer');
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongo')(expressSession);
 const mongoose = require('mongoose');
@@ -22,10 +24,21 @@ app.set('view engine', 'handlebars');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
+// app.use(express.static('public/images'));
 
-// const upload = multer({
-// 	dest: 'public/uploads/',
-// });
+// Routes
+app.use('/admin', adminRoutes);
+app.use(userRoutes);
+app.use(storeRoutes);
+
+const fileStorage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, 'images');
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.fieldname + '-' + Date.now() + file.originalname);
+	},
+});
 
 // enable session management
 app.use(
@@ -37,6 +50,8 @@ app.use(
 	})
 );
 
+app.use(multer({ storage: fileStorage }).single('image'));
+
 // enable Passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -45,11 +60,6 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); // Save the user.id to the session
 passport.deserializeUser(User.deserializeUser()); // Receive the user.id from the session and fetch the User from the DB by its ID
-
-// Routes
-app.use('/admin', adminRoutes);
-app.use(userRoutes);
-app.use(storeRoutes);
 
 // app.get('/', (req, res) => {
 // 	res.render('admin/add-product');
@@ -147,7 +157,7 @@ app.use(storeRoutes);
 // Start server
 
 mongoose.connect(
-	'mongodb://localhost:27017/bon_plan',
+	'mongodb+srv://M_Ghani:EYSGAZSYAieSjfp4@cluster0.kymmz.mongodb.net/bon_plan?retryWrites=true&w=majority',
 	{
 		useUnifiedTopology: true,
 		useNewUrlParser: true,
