@@ -1,44 +1,35 @@
-{{> navigateur}}
+{{> navigateur }}
 
 
 
-<div class="container mt-5">
-    <form>
-        <div class="form-group">
+<div class="container mt-5 w-100">
+    <h2 class="text-center my-4">Add your product</h2>
+    <form class="w-50 mx-auto" enctype="multipart/form-data" action="/admin/add-product" method="POST">
+        <div class="form-group mb-4">
             <label for="name" class="m-0 p-0">Name</label>
-            <input type="text" class="form-control mt-2" id="name" placeholder="Name of the product">
+            <input type="text" name="name" class="form-control mt-2" id="name" placeholder="Name of the product">
         </div>
-        <div class="row">
+        <div class="row mb-2">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Price">
+                <input type="text" name="price" class="form-control" placeholder="Price">
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="City">
+                <input type="text" name="city" class="form-control" placeholder="City">
             </div>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="3"></textarea>
+            <textarea placeholder="Describe your item" name="description" class="form-control" id="description"
+                rows="3"></textarea>
         </div>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Image1</label>
-                </div>
-            </div>
-            <div class="col">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Image2</label>
-                </div>
-            </div>
-            <div class="col">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Image3</label>
+                    <input name="image" type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label text-muted" for="customFile">Up to five images</label>
                 </div>
             </div>
         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

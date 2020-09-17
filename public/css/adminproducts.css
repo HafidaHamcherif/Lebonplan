@@ -1,0 +1,12 @@
+body {
+	background-color: rgba(196, 176, 212, 0.767);
+}
+
+.col-lg-3 .card {
+	height: 60vh;
+	margin-top: 3vh;
+}
+
+.col-lg-4 .card .card-img-top {
+	height: 55%;
+}
