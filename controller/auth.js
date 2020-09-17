@@ -63,7 +63,10 @@ exports.getProfile = (req, res) => {
 	console.log('GET /admin');
 	if (req.isAuthenticated()) {
 		console.log(req.user);
-		res.send('successfully logged in ');
+		res.render('users/profile', {
+			user : req.user.toObject()
+		}
+		);
 	} else {
 		res.redirect('/');
 	}
