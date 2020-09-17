@@ -12,6 +12,11 @@ router.post('/login', authController.postLogIn);
 
 router.get('/login', authController.getLogIn);
 
+// // home
+// router.post('/home', authController.postHome);
+
+router.get('/homelogin', authController.getHomelogin);
+
 // Log Out
 router.get('/logout', authController.getLogOut);
 
@@ -19,3 +24,4 @@ router.get('/logout', authController.getLogOut);
 router.get('/profile', authController.getProfile);
 
 module.exports = router;
+

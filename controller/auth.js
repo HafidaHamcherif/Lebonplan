@@ -47,20 +47,34 @@ exports.getSignUp = (req, res) => {
 };
 
 exports.postLogIn = passport.authenticate('local', {
-	successRedirect: 'users/profile',
+	successRedirect: 'homelogin',
 	failureRedirect: 'users/login',
 });
 
 exports.getLogIn = (req, res) => {
+	console.log('GET /profile');
 	if (req.isAuthenticated()) {
-		res.redirect('users/profile');
+		res.redirect('profile');
 	} else {
 		res.render('users/login');
 	}
 };
 
+exports.getHomelogin = (req, res) => {
+	console.log('GET /home');
+	if (req.isAuthenticated()) {
+		res.render('homelogin', {
+			user : req.user.toObject()
+		}	
+		);
+
+	} else {
+		res.redirect('/logout');
+	}
+};
+
 exports.getProfile = (req, res) => {
-	console.log('GET /admin');
+	console.log('GET /profile');
 	if (req.isAuthenticated()) {
 		console.log(req.user);
 		res.render('users/profile', {
@@ -68,7 +82,7 @@ exports.getProfile = (req, res) => {
 		}
 		);
 	} else {
-		res.redirect('/');
+		res.redirect('/logout');
 	}
 };
 
