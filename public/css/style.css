@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+body {
+	background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+	min-height: 100vh;
+	width: 100%;
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+a {
+	font-family: inherit;
+}
+
+.map__image {
+	width: 50%;
+	float: left;
+}
+.map__image path {
+	fill: blue;
+	stroke: white;
+	stroke-width: 1px;
+	transition: fill 0, 3s;
+}
+h2 {
+	color: orange;
+}
+.map #Région-C {
+	fill: red;
+}
+.map #Région-H {
+	fill: red;
+}
+.map #Région-M {
+	fill: red;
+}
+
+nav.navbar.navbar-expand-lg {
+	background-image: linear-gradient(to right, #43e97b 0%, #27d4b5 100%);
+	position: relative;
+	color: black;
+}
+
+nav.navbar.navbar-expand-lg .nav-link,
+nav.navbar.navbar-expand-lg .navbar-brand {
+	color: rgb(255, 255, 255);
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+nav.navbar.navbar-expand-lg .navbar-brand {
+}
+
+nav.navbar.navbar-expand-lg a:hover {
+	color: #17702c;
+	transition: 0.4s;
+}
+
+#lebonplan {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.carousel-inner .carousel-item {
+	height: 50vh;
+}
+
+.carousel-inner .carousel-item img {
+	height: 100%;
+	width: 100%;
+	display: block;
+}

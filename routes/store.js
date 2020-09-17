@@ -1,20 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const storeController = require('../controller/store');
 
-router.get('/', (req, res) => {
-	res.render('mystore/home');
-});
-
-router.get('/products', (req, res) => {
-	res.render('mystore/products');
-});
+router.get('/products', storeController.getProducts);
 
 router.get('/products/cities/:city', (req, res) => {
 	res.render('mystore/city');
 });
 
-router.get('/products/:productId', (req, res) => {
-	res.render('mystore/product-details');
-});
+router.get('/products/:productId', storeController.getProductDetails);
+
+router.get('/', storeController.getHome);
 
 module.exports = router;
