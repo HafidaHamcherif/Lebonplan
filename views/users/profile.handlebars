@@ -1,2 +1,9 @@
-{{> navigateur}}
-<h1>I am a user profile page</h1>
+{{>navprofil}}
+<link rel="stylesheet" href="/css/profil.css">
+<div style="color: #ea7e59">
+    <h1>Profil</h1>
+</div>
+<h2>Username: {{user.username}}</h2>
+<h2>Firstname: {{user.firstName}}</h2>
+<h2>Surname: {{user.surname}}</h2>
+<img src="{{user.profilPicture}}" alt="">
