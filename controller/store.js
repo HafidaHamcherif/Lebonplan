@@ -7,6 +7,7 @@ exports.getProductDetails = (req, res) => {
 		.then(prod => {
 			const product = prod.toObject();
 			res.render('mystore/product-details', {
+				user : req.user.toObject(),
 				product: product,
 			});
 		})
@@ -18,6 +19,7 @@ exports.getProducts = (req, res) => {
 		const productsList = products.map(product => product.toObject());
 		console.log(products);
 		res.render('mystore/products', {
+			user : req.user.toObject(),
 			prods: productsList,
 			hasProducts: products.length > 0,
 		});
