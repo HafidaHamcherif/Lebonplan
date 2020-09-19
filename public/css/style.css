@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
-body {
-	background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+html {
 	min-height: 100vh;
 	width: 100%;
+}
+
+body {
+	background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+	height: fit-content;
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: 400;
 }
@@ -18,34 +22,39 @@ a {
 }
 
 #map {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#map path {
+	fill: #86aae0;
+	stroke: #ffffff;
+	stroke-width: 0.6;
+	transition: fill 0.2s, stroke 0.3s;
+}
+
+#map path:hover {
+	fill: red;
+	stroke: red;
+}
+
+#map .separator {
+	stroke: #ccc;
+	fill: none;
+	stroke-width: 1.5;
+}
+
+#map .separator:hover {
+	stroke: #ccc;
+	fill: none;
+}
+
+#mapWrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height: 80vh;
-	margin-top: 5vh;
-}
-
-.map__image {
-	width: 50%;
-	margin: auto;
-}
-.map__image path {
-	fill: blue;
-	stroke: white;
-	stroke-width: 1px;
-	transition: fill 0, 3s;
-}
-h2 {
-	color: orange;
-}
-.map #Région-C {
-	fill: red;
-}
-.map #Région-H {
-	fill: red;
-}
-.map #Région-M {
-	fill: red;
+	margin-top: 10vh;
 }
 
 nav.navbar.navbar-expand-lg {
@@ -59,9 +68,6 @@ nav.navbar.navbar-expand-lg .navbar-brand {
 	color: rgb(255, 255, 255);
 	text-transform: uppercase;
 	font-weight: 500;
-}
-
-nav.navbar.navbar-expand-lg .navbar-brand {
 }
 
 nav.navbar.navbar-expand-lg a:hover {
@@ -84,24 +90,4 @@ nav.navbar.navbar-expand-lg a:hover {
 	height: 100%;
 	width: 100%;
 	display: block;
-}
-
-.map__image {
-	width: 50%;
-	float: left;
-}
-.map__image path {
-	fill: black;
-	stroke: white;
-	stroke-width: 1px;
-	transition: fill 0, 3s;
-}
-.map #Région-C {
-	fill: red;
-}
-.map #Région-H {
-	fill: red;
-}
-.map #Région-M {
-	fill: red;
 }

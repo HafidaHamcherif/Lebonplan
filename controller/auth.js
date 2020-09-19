@@ -12,15 +12,16 @@ exports.postSignUp = (req, res) => {
 	const password = req.body.password;
 	const firstname = req.body.firstname;
 	const surname = req.body.surname;
-	const profilPicture = req.file.path;
+	const imageUrl = req.file.path;
 
 	// Register
 	User.register(
 		new User({
 			username: username,
 			firstName: firstname,
+			password: req.body.password,
 			surname: surname,
-			profilPicture,
+			imageUrl: imageUrl,
 			// other fields can be added here
 		}),
 		password, // password will be hashed
@@ -64,10 +65,8 @@ exports.getHomelogin = (req, res) => {
 	console.log('GET /home');
 	if (req.isAuthenticated()) {
 		res.render('homelogin', {
-			user : req.user.toObject()
-		}	
-		);
-
+			user: req.user.toObject(),
+		});
 	} else {
 		res.redirect('/logout');
 	}
@@ -78,9 +77,8 @@ exports.getProfile = (req, res) => {
 	if (req.isAuthenticated()) {
 		console.log(req.user);
 		res.render('users/profile', {
-			user : req.user.toObject()
-		}
-		);
+			user: req.user.toObject(),
+		});
 	} else {
 		res.redirect('/logout');
 	}

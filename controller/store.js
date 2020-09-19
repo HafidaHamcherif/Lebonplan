@@ -1,7 +1,7 @@
 const Product = require('../models/product');
 
 exports.getProductDetails = (req, res) => {
-	console.log(req.params.productId);
+	// console.log(req.params.productId);
 	const productId = req.params.productId;
 	Product.findById(productId)
 		.then(prod => {
@@ -16,7 +16,7 @@ exports.getProductDetails = (req, res) => {
 exports.getProducts = (req, res) => {
 	Product.find().then(products => {
 		const productsList = products.map(product => product.toObject());
-		console.log(products);
+		// console.log(products);
 		res.render('mystore/products', {
 			prods: productsList,
 			hasProducts: products.length > 0,
