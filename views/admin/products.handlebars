@@ -3,7 +3,7 @@
 {{!-- {{> homelogin }} --}}
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="stylesheet" href="/css/profil.css">
-<nav class="navbar navbar-expand-lg navbar-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
         <h1> <a class="navbar-brand" href="#">LBP</a></h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -36,6 +36,9 @@
                 <img class='pp' src="{{user.profilPicture}}" alt="">
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:3000/admin/products">My Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>

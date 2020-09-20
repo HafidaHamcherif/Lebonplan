@@ -26,6 +26,29 @@ exports.getProducts = (req, res) => {
 	});
 };
 
+// exports.getMyproducts = (req, res) => {
+// 	Product.find().then(products => {
+		
+// 		console.log(myproducts);
+// 		res.render('mystore/myproducts', {
+// 			user : req.user.toObject(),
+		
+			
+// 		});
+// 	});
+// };
+// exports.getMyproducts = (req, res) => {
+// 	Product.find().then(products => {
+// 	console.log('GET /my products');
+// 	console.log(myproducts);
+	
+// 		res.render('mystore/myproducts', {
+// 			user : req.user.toObject()
+// 		}	
+// 		);
+// 	});
+// };
+
 exports.getHome = (req, res) => {
 	res.render('mystore/home');
 };
