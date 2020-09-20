@@ -48,17 +48,7 @@ exports.getSignUp = (req, res) => {
 		res.render('users/signup');
 	}
 };
-// console.log('GET /home');
-// if (req.isAuthenticated()) {
-// 	res.render('homelogin', {
-// 		user : req.user.toObject()
-// 	}	
-// 	);
 
-// } else {
-// 	res.render('users/signup');
-// }
-// };
 
 exports.postLogIn = passport.authenticate('local', {
 	successRedirect: 'homelogin',

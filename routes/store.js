@@ -4,9 +4,6 @@ const storeController = require('../controller/store');
 
 router.get('/products', storeController.getProducts);
 
-
-// router.get('/admin/products', storeController.getMyroducts);
-
 router.get('/products/cities/:city', (req, res) => {
 	res.render('mystore/city');
 });
