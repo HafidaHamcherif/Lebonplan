@@ -70,6 +70,10 @@ nav.navbar.navbar-expand-lg .navbar-brand {
 	font-weight: 500;
 }
 
+nav.navbar.navbar-expand-lg .nav-link {
+	font-size: 0.9em;
+}
+
 nav.navbar.navbar-expand-lg a:hover {
 	color: #17702c;
 	transition: 0.4s;

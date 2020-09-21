@@ -15,6 +15,7 @@ exports.getProductDetails = (req, res) => {
 
 exports.getProducts = (req, res) => {
 	Product.find().then(products => {
+		console.log(products);
 		const productsList = products.map(product => product.toObject());
 		// console.log(products);
 		res.render('mystore/products', {
