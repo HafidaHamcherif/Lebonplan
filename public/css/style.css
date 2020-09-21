@@ -57,11 +57,17 @@ a {
 	margin-top: 10vh;
 }
 
-nav.navbar.navbar-expand-lg {
+ nav.navbar.navbar-expand-lg {
+	
+	position: relative;
+	
+}
+/* nav.navbar.navbar-expand-lg {
 	background-image: linear-gradient(to right, #43e97b 0%, #27d4b5 100%);
 	position: relative;
 	color: black;
 }
+
 
 nav.navbar.navbar-expand-lg .nav-link,
 nav.navbar.navbar-expand-lg .navbar-brand {
@@ -77,7 +83,7 @@ nav.navbar.navbar-expand-lg .nav-link {
 nav.navbar.navbar-expand-lg a:hover {
 	color: #17702c;
 	transition: 0.4s;
-}
+} */
 
 #lebonplan {
 	position: absolute;

@@ -1,5 +1,63 @@
+
 <link rel="stylesheet" href="/css/adminproducts.css">
+<<<<<<< HEAD
 {{> navigateur}}
+=======
+{{!-- {{> navigateur}} --}}
+{{!-- {{> homelogin }} --}}
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/profil.css">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <h1> <a class="navbar-brand" href="#">LBP</a></h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav">
+                <a class="nav-link" href="/homelogin">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cities
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="https://www.leboncoin.fr/annonces/offres/ile_de_france/">Paris</a>
+                        <a class="dropdown-item" href="https://www.leboncoin.fr/annonces/offres/rhone_alpes/">Lyon</a>
+                        <a class="dropdown-item" href="https://www.leboncoin.fr/annonces/offres/provence_alpes_cote_d_azur/">Marseille</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/add-product">Add Product</a>
+                </li>
+
+            </ul>
+        </div>
+        <div id="lebonplan">
+            <h2 class="text-light">Le Bon Plan</h2>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                {{!-- <img class='pp' src="{{user.profilPicture}}" alt=""> --}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin/products">My Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+>>>>>>> ade38b7bebf71158f2919adf62da291b5ff592ae
 
 <main class="container">
     <div class="card-deck px-0">

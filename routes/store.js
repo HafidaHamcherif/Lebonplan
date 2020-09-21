@@ -12,6 +12,6 @@ router.get('/products/:productId', storeController.getProductDetails);
 
 router.get('/', storeController.getHome);
 
-// router.get('/homelogin', authController.getHomelogin);
+
 
 module.exports = router;
